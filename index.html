@@ -23,21 +23,25 @@
     <meta charset="UTF-8">
     <title>WebStack.cc - 设计师网址导航</title>
     <script>
-    if (navigator.appName == "Netscape") {
-        var language = navigator.language;
-    } else {
-        var language = navigator.browserLanguage;
+    (function() {
+        var LANG_KEY = 'preferred_language';
+        var savedLang = localStorage.getItem(LANG_KEY);
+        var targetLang;
 
-    }
+        if (savedLang) {
+            targetLang = savedLang;
+        } else {
+            var browserLang = navigator.language || navigator.browserLanguage || '';
+            targetLang = browserLang.toLowerCase().indexOf('zh') > -1 || browserLang.toLowerCase().indexOf('cn') > -1 ? 'cn' : 'en';
+            
+            if (!browserLang || browserLang.toLowerCase().indexOf('zh') === -1 && browserLang.toLowerCase().indexOf('cn') === -1) {
+                targetLang = 'cn';
+            }
+        }
 
-    if (language.indexOf("en") > -1) {
-        document.location.href = "en/index.html";
-    } else if (language.indexOf("zh") > -1) {
-        document.location.href = "cn/index.html";
-    } else {
-        document.location.href = "en/index.html";
-
-    }
+        localStorage.setItem(LANG_KEY, targetLang);
+        window.location.href = '/' + targetLang + '/';
+    })();
     </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

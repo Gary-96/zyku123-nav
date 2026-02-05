@@ -35,6 +35,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
+    <script>
+    localStorage.setItem('preferred_language', 'en');
+    </script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -52,6 +55,166 @@
     <meta name="twitter:title" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc">
     <meta name="twitter:description" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,设计师导航,设计师网址大全,设计师网址导航,产品经理网址导航,UX师网址导航,www.webstack.cc">
     <meta name="twitter:image" content="http://www.webstack.cc/assets/images/webstack_banner_cn.png">
+<style>
+        /* 侧边栏背景色：深色背景以便白色文字有足够对比度 */
+        .sidebar-menu {
+            background: #111827 !important;
+            background: linear-gradient(180deg, #111827 0%, #000000 100%) !important;
+        }
+
+        /* 菜单文字和图标颜色 */
+        .sidebar-menu .main-menu a {
+            color: #9ca3af !important;
+        }
+
+        .sidebar-menu .main-menu li.active > a, 
+        .sidebar-menu .main-menu li:hover > a {
+            color: #2afadf !important;
+        }
+
+        .sidebar-menu .main-menu a i {
+            color: #6b7280 !important;
+        }
+
+        .sidebar-menu .main-menu li.active > a i,
+        .sidebar-menu .main-menu li:hover > a i {
+            color: #2afadf !important;
+        }
+
+        /* Logo SVG 样式 */
+        .logo-expanded svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .logo-collapsed svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* 微交互：菜单图标点击动效 */
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .main-menu a i.bounce-effect {
+            animation: iconBounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* 侧边栏底部容器 */
+        .sidebar-menu-inner {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #main-menu {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
+
+        /* 侧边栏底部固定区域 */
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: linear-gradient(to top, #111827 80%, transparent 100%);
+            z-index: 100;
+        }
+
+        /* 微型搜索条 */
+        .sidebar-search {
+            margin: 10px 15px;
+            padding: 8px 12px;
+            background: rgba(42, 250, 223, 0.1);
+            border: 1px solid rgba(42, 250, 223, 0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-search:hover {
+            background: rgba(42, 250, 223, 0.15);
+            border-color: rgba(42, 250, 223, 0.5);
+        }
+
+        .sidebar-search i {
+            color: #2afadf;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .sidebar-search span {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        /* 日期时间显示 */
+        .sidebar-clock {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-clock .time {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(42, 250, 223, 0.8);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        /* 版权信息 */
+        .sidebar-copyright {
+            text-align: center;
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.6;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-copyright a {
+            color: #2afadf;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-copyright a:hover {
+            opacity: 0.8;
+        }
+
+        /* 搜索框增强样式 */
+        #search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid rgba(42, 250, 223, 0.3);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            border-color: rgba(42, 250, 223, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #search-input::placeholder {
+            color: #9ca3af;
+        }
+    </style>
 </head>
 
 <body class="page-body">
@@ -62,12 +225,33 @@
                 <header class="logo-env">
                     <!-- logo -->
                     <div class="logo">
-                        <a href="index.html" class="logo-expanded">
-                            <img src="../assets/images/logo@2x.png" width="100%" alt="" />
+                        <a href="/" class="logo-expanded">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <!-- 科技感青色图标 -->
+                                <circle cx="20" cy="30" r="15" fill="none" stroke="#2afadf" stroke-width="2"/>
+                                <path d="M 15 30 L 20 25 L 25 30 L 20 35 Z" fill="#2afadf"/>
+                                <circle cx="20" cy="30" r="3" fill="#2afadf"/>
+                                
+                                <!-- 主标题：优创资源导航 (纯白色) -->
+                                <text x="45" y="28" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">优创资源导航</text>
+                                
+                                <!-- 域名小字 (纯白色、加粗、增加字母间距) -->
+                                <text x="45" y="45" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">NAV.ZYKU123.COM</text>
+                            </svg>
                         </a>
-                        <a href="index.html" class="logo-collapsed">
-                            <img src="../assets/images/logo-collapsed@2x.png" width="40" alt="" />
+                        <a href="/" class="logo-collapsed">
+                            <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                <!-- 折叠状态的青色图标 -->
+                                <circle cx="20" cy="20" r="15" fill="none" stroke="#2afadf" stroke-width="2"/>
+                                <path d="M 15 20 L 20 15 L 25 20 L 20 25 Z" fill="#2afadf"/>
+                                <circle cx="20" cy="20" r="3" fill="#2afadf"/>
+                            </svg>
                         </a>
+                    </div>
+                    <!-- 搜索输入框 -->
+                    <div class="sidebar-search">
+                        <i class="fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Search..." style="flex: 1; background: transparent; border: none; color: #9ca3af; outline: none; font-size: 12px;">
                     </div>
                     <div class="mobile-menu-toggle visible-xs">
                         <a href="#" data-toggle="user-info-menu">
@@ -326,14 +510,37 @@
                             </li>
                         </ul>
                     </li> -->
+                    <li>
+                        <a href="#">
+                            <i class="fa-plus-circle"></i>
+                            <span class="title">Placeholder 01</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-plus-circle"></i>
+                            <span class="title">Placeholder 02</span>
+                        </a>
+                    </li>
                     <div class="submit-tag">
                     <a href="about.html">
                         <i class="linecons-heart"></i>
-                        <span class="tooltip-blue">关于本站</span>
+                        <span class="tooltip-blue">About</span>
                         <span class="label label-Primary pull-right hidden-collapsed">♥︎</span>
                     </a>
                 </div>
                 </ul>
+                <!-- 侧边栏底部固定区域 -->
+                <div class="sidebar-footer">
+                    <!-- 日期时间显示 -->
+                    <div class="sidebar-clock">
+                        <div class="time" id="sidebar-time">2026/01/01 00:00</div>
+                    </div>
+                    <!-- 版权信息 -->
+                    <div class="sidebar-copyright">
+                        &copy; 2026 ZYKU123-NAV | Powered by <a href='https://zyku123.com' target='_blank'>ZYKU Resources</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="main-content">
@@ -358,7 +565,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="../cn/index.html">
+                                <a href="../cn/index.html" onclick="localStorage.setItem('preferred_language', 'cn');">
                                     <img src="../assets/images/flags/flag-cn.png" alt="flag-cn" /> Chinese
                                 </a>
                             </li>
@@ -4269,6 +4476,96 @@
     <!-- JavaScripts initializations and stuff -->
     <script src="../assets/js/xenon-custom.js"></script>
     <script src="../assets/js/lozad.js"></script>
+    
+    <!-- 侧边栏增强功能 -->
+    <script>
+    // 1. 菜单图标点击动效
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuIcons = document.querySelectorAll('.main-menu a i');
+        menuIcons.forEach(icon => {
+            icon.parentElement.addEventListener('click', function() {
+                icon.classList.add('bounce-effect');
+                setTimeout(() => {
+                    icon.classList.remove('bounce-effect');
+                }, 300);
+            });
+        });
+
+        // 初始化搜索功能
+        initSearch();
+    });
+
+    // 2. 完整日期时间显示
+    function updateClock() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timeElement = document.getElementById('sidebar-time');
+        if (timeElement) {
+            timeElement.textContent = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes;
+        }
+    }
+
+    // 初始化时钟并每分钟更新
+    updateClock();
+    setInterval(updateClock, 60000);
+
+    // 3. 实时搜索过滤功能
+    function initSearch() {
+        const searchInput = document.getElementById('search-input');
+        if (!searchInput) return;
+
+        // 搜索输入事件
+        searchInput.addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase().trim();
+            filterCards(keyword);
+        });
+
+        // 菜单点击重置搜索
+        const menuLinks = document.querySelectorAll('.main-menu a.smooth');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                searchInput.value = '';
+                filterCards('');
+            });
+        });
+    }
+
+    // 过滤导航卡片
+    function filterCards(keyword) {
+        const cards = document.querySelectorAll('.xe-widget.xe-conversations');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            if (!keyword) {
+                card.style.display = '';
+                visibleCount++;
+                return;
+            }
+
+            // 获取卡片内容
+            const title = card.querySelector('.xe-user-name strong')?.textContent || '';
+            const description = card.querySelector('.xe-comment p')?.textContent || '';
+            const url = card.getAttribute('data-original-title') || card.getAttribute('onclick') || '';
+
+            // 全匹配检索
+            const searchText = (title + ' ' + description + ' ' + url).toLowerCase();
+            
+            if (searchText.includes(keyword)) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // 显示搜索结果提示
+        console.log('Found ' + visibleCount + ' matching results');
+    }
+    </script>
 </body>
 
 </html>
