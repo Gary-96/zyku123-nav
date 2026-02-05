@@ -23,7 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="viggo" />
-    <title>WebStack.cc - 设计师网址导航</title>
+    <title>优创资源导航 - 你的好工具都在这里</title>
     <meta name="keywords" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,设计师导航,设计师网址大全,设计师网址导航,产品经理网址导航,交互设计师网址导航,www.webstack.cc">
     <meta name="description" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、素材资源网站，定时更新分享优质产品设计书签。www.webstack.cc">
     <link rel="shortcut icon" href="../assets/images/favicon.png">
@@ -53,6 +53,39 @@
     <meta name="twitter:title" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、素材资源网站，定时更新分享优质产品设计书签。www.webstack.cc">
     <meta name="twitter:description" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,设计师导航,设计师网址大全,设计师网址导航,产品经理网址导航,交互设计师网址导航,www.webstack.cc">
     <meta name="twitter:image" content="http://www.webstack.cc/assets/images/webstack_banner_cn.png">
+<style>
+        /* 1. 调整侧边栏背景色：改用深蓝黑色渐变，能让 Logo 的青色亮起来 */
+        .sidebar-menu {
+            background: #111827 !important; /* 极客深色 */
+            background: linear-gradient(180deg, #111827 0%, #000000 100%) !important;
+        }
+
+        /* 2. 核心：由于你的 Logo 文字是黑色的，在深色背景下看不见 */
+        /* 下面这行代码会利用滤镜强行让 Logo 图片的黑色部分变亮/变白 */
+        .logo-expanded img, .logo-collapsed img {
+            filter: brightness(0) invert(1) !important; 
+            /* 如果你觉得太白了，可以用 filter: contrast(0) brightness(2); */
+        }
+
+        /* 3. 修改菜单文字和图标颜色，匹配你的 Logo 青色 */
+        .sidebar-menu .main-menu a {
+            color: #9ca3af !important; /* 默认浅灰 */
+        }
+
+        .sidebar-menu .main-menu li.active > a, 
+        .sidebar-menu .main-menu li:hover > a {
+            color: #2afadf !important; /* 悬停时变成 Logo 的青色 */
+        }
+
+        .sidebar-menu .main-menu a i {
+            color: #6b7280 !important; /* 图标颜色 */
+        }
+
+        .sidebar-menu .main-menu li.active > a i,
+        .sidebar-menu .main-menu li:hover > a i {
+            color: #2afadf !important;
+        }
+    </style>
 </head>
 
 <body class="page-body">
@@ -63,13 +96,13 @@
                 <header class="logo-env">
                     <!-- logo -->
                     <div class="logo">
-                        <a href="index.html" class="logo-expanded">
-                            <img src="../assets/images/logo@2x.png" width="100%" alt="" />
-                        </a>
-                        <a href="index.html" class="logo-collapsed">
-                            <img src="../assets/images/logo-collapsed@2x.png" width="40" alt="" />
-                        </a>
-                    </div>
+    <a href="index.html" class="logo-expanded">
+        <img src="../assets/images/logo@2x.png" width="100%" alt="优创资源导航">
+    </a>
+    <a href="index.html" class="logo-collapsed">
+        <img src="../assets/images/favicon.png" width="40" alt="优创资源导航">
+    </a>
+</div>
                     <div class="mobile-menu-toggle visible-xs">
                         <a href="#" data-toggle="user-info-menu">
                             <i class="linecons-cog"></i>
