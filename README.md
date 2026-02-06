@@ -38,6 +38,7 @@
 ## 🛠️ 如何部署
 
 1.**克隆项目**
+
    ```bash
    git clone [https://github.com/你的用户名/你的仓库名.git](https://github.com/你的用户名/你的仓库名.git)
 
@@ -47,6 +48,7 @@
 3.上线 支持直接托管于 GitHub Pages、Vercel 或各类静态空间。
 
 🤝 贡献与反馈
+
 如果你有更好的资源推荐，或者发现了布局上的 Bug，欢迎通过以下方式参与：
 
 提交 Issue
@@ -57,5 +59,6 @@
 
 
 ❤️ 鸣谢
+
 感谢 WebStack-Genshin 等优秀开源项目的灵感启发。
 
