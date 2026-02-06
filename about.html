@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="viggo" />
+    <title>关于本站 - 优创资源导航</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="./assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arimo', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 顶部导航栏 */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+        }
+
+        .home-button i {
+            font-size: 18px;
+        }
+
+        .nav-title {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* 主容器 */
+        .about-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 40px 20px;
+            padding-top: 100px;
+            border-top: 1px solid #eee;
+        }
+
+        /* 头部 */
+        .about-header {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .about-header h1 {
+            color: #fff;
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-header p {
+            color: rgba(255,255,255,0.95);
+            font-size: 22px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 内容板块 */
+        .about-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 45px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .about-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            border-color: rgba(102,126,234,0.3);
+        }
+
+        .about-section h2 {
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-section p {
+            color: rgba(255,255,255,0.85);
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-section ul li {
+            color: rgba(255,255,255,0.85);
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .about-section ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 12px;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        }
+
+        .footer-links {
+            text-align: center;
+            padding: 50px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(102,126,234,0.3);
+            color: #fff;
+            font-size: 17px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.5);
+        }
+
+        .footer-links i {
+            font-size: 20px;
+        }
+
+        .copyright-footer {
+            text-align: center;
+            padding: 50px 0;
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 30px;
+        }
+
+        .copyright-footer p {
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #fff;
+        }
+</style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="top-nav">
+        <a href="index.html" class="home-button">
+            <i class="fa fa-home"></i>
+            <span>返回首页</span>
+        </a>
+        <div class="nav-title">💎 关于本站</div>
+        <div style="width: 140px;"></div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="about-container">
+        <div class="about-header">
+            <h1>💎 优创资源导航</h1>
+            <p>你的好工具都在这里</p>
+        </div>
+
+        <div class="about-section">
+            <h2>📖 站点简介</h2>
+            <p>优创资源导航致力于为设计师、开发者、产品经理等互联网从业者提供一站式的优质资源导航服务。我们精心收集整理了国内外优秀的设计网站、开发工具、AI 工具、跨境支付平台等资源，帮助您快速找到所需工具，提升工作效率。</p>
+            <p>本站特色功能包括：</p>
+            <ul>
+                <li>精选 AI 工具导航 - 涵盖 DeepSeek、ChatGPT、Claude 等主流 AI 平台</li>
+                <li>跨境支付工具集合 - PayPal、Wise、Payoneer 等国际支付方案</li>
+                <li>实时汇率转换器 - 支持 8+ 种主流货币实时联动转换</li>
+                <li>设计资源导航 - UI 设计、灵感创意、素材资源一网打尽</li>
+                <li>开发工具导航 - 前端框架、后端工具、云服务平台</li>
+            </ul>
+        </div>
+
+        <div class="about-section">
+            <h2>🔄 更新日志</h2>
+            <p><strong>最新更新：</strong><span class="update-badge">2026/02/06</span></p>
+            <ul>
+                <li>新增 AI 工具导航板块，收录 15 个主流 AI 平台</li>
+                <li>新增跨境支付工具板块，包含 6 个国际支付方案</li>
+                <li>上线实时汇率转换器，支持 8 种货币实时联动换算</li>
+                <li>优化侧边栏折叠交互，提升用户体验</li>
+                <li>修复图标显示问题，统一使用 Favicon API</li>
+                <li>完善深色主题设计，提升视觉效果</li>
+                <li>重构汇率转换器和关于页面，采用全屏简洁布局</li>
+            </ul>
+        </div>
+
+        <div class="about-section">
+            <h2>⚖️ 版权说明</h2>
+            <p>本站所有收录的网站、工具、资源均为互联网公开资源，版权归原作者所有。本站仅提供导航服务，不对第三方网站的内容负责。</p>
+            <p>如果您是资源所有者，且不希望您的网站出现在本导航中，请通过以下方式联系我们，我们将在 24 小时内处理您的请求。</p>
+            <p><strong>技术支持：</strong>基于 WebStack 开源项目二次开发</p>
+            <p><strong>开源协议：</strong>MIT License</p>
+        </div>
+
+        <div class="about-section">
+            <h2>📬 联系我们</h2>
+            <p>如果您有任何建议、合作意向或资源推荐，欢迎通过以下方式联系我们：</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank">
+                    <i class="fa fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:contact@example.com">
+                    <i class="fa fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="https://twitter.com" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                <a href="currency.html">
+                    <i class="fa fa-exchange"></i>
+                    <span>汇率转换</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="copyright-footer">
+            <p>© 2026 优创资源导航 All Rights Reserved</p>
+            <p>Made with ❤️ by Viggo</p>
+        </div>
+    </div>
+</body>
+</html>
