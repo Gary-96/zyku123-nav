@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>专题文章 - 优创资源导航</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="YouChuang">
+    <meta name="keywords" content="优创资源导航,UI设计,设计资源,创意网站,设计导航,设计师网址大全">
+    <meta name="description" content="优创资源导航 - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、素材资源网站，定时更新分享优质产品设计书签。">
+    
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    
+<style>
+    /* 侧边栏背景色：宝塔风格白色 */
+    .sidebar-menu {
+        background: #ffffff !important;
+        border-right: 1px solid #e5e5e5 !important;
+        box-shadow: none !important;
+        width: 220px !important;
+        overflow: hidden !important;
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        height: 100vh !important;
+        z-index: 1001 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* 调整主内容区左边距 */
+    .main-content {
+        padding-left: 240px !important;
+        position: relative !important;
+        margin-left: 0 !important;
+        margin-top: 80px !important;
+        padding-top: 80px !important;
+    }
+    
+    /* Logo容器宽度同步 */
+    .logo-env {
+        width: 220px !important;
+        flex-shrink: 0 !important;
+        height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #e5e5e5 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+    
+    /* 全局重置 - 消除所有默认间距 */
+    .navbar.user-info-navbar,
+    .logo-env,
+    .sidebar-menu {
+        margin: 0 !important;
+        padding: 0 !important;
+        border-spacing: 0 !important;
+        border-collapse: separate !important;
+    }
+    
+    /* 强制边框对齐 */
+    .navbar.user-info-navbar {
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+    }
+    
+    .logo-env {
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+    }
+        
+    /* 侧边栏菜单文字和图标颜色：深灰色 */
+    .sidebar-menu .main-menu a {
+        color: #333333 !important;
+        border-bottom: 1px solid #e9ecef !important;
+        display: flex !important;
+        align-items: center !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        padding-left: 15px !important;
+        background: transparent !important;
+    }
+    
+    /* 强制图标可见性 */
+    .sidebar-menu i {
+        color: #555 !important;
+        opacity: 1 !important;
+        display: inline-block !important;
+        width: 16px !important;
+        text-align: center !important;
+        text-shadow: none !important;
+        font-size: 14px !important;
+        line-height: 1 !important;
+        vertical-align: middle !important;
+        margin-right: 10px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* 确保所有图标字体正确加载 */
+    .sidebar-menu .linecons-star:before,
+    .sidebar-menu .linecons-doc:before,
+    .sidebar-menu .linecons-lightbulb:before,
+    .sidebar-menu .linecons-thumbs-up:before,
+    .sidebar-menu .linecons-diamond:before,
+    .sidebar-menu .linecons-pencil:before,
+    .sidebar-menu .linecons-user:before,
+    .sidebar-menu .linecons-heart:before,
+    .sidebar-menu .linecons-cog:before,
+    .sidebar-menu .linecons-tag:before {
+        font-family: 'linecons' !important;
+        display: inline-block !important;
+        visibility: visible !important;
+        font-style: normal !important;
+        font-weight: normal !important;
+        font-variant: normal !important;
+        text-transform: none !important;
+        line-height: 1 !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+    
+    /* Linecons 图标内容 */
+    .sidebar-menu .linecons-star:before { content: "\e804" !important; }
+    .sidebar-menu .linecons-doc:before { content: "\e813" !important; }
+    .sidebar-menu .linecons-lightbulb:before { content: "\e81a" !important; }
+    .sidebar-menu .linecons-thumbs-up:before { content: "\e80d" !important; }
+    .sidebar-menu .linecons-diamond:before { content: "\e82d" !important; }
+    .sidebar-menu .linecons-pencil:before { content: "\e80e" !important; }
+    .sidebar-menu .linecons-user:before { content: "\e805" !important; }
+    .sidebar-menu .linecons-heart:before { content: "\e803" !important; }
+    .sidebar-menu .linecons-cog:before { content: "\e815" !important; }
+    .sidebar-menu .linecons-tag:before { content: "\e80c" !important; }
+    
+    /* FontAwesome 图标确保显示 */
+    .sidebar-menu .fa,
+    .sidebar-menu .fa-cog,
+    .sidebar-menu .fa-robot,
+    .sidebar-menu .fa-credit-card,
+    .sidebar-menu .fa-github,
+    .sidebar-menu .fa-bars,
+    .sidebar-menu .fa-search {
+        font-family: 'FontAwesome' !important;
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* FontAwesome 图标内容 */
+    .sidebar-menu .fa-cog:before { content: "\f013" !important; }
+    .sidebar-menu .fa-credit-card:before { content: "\f09d" !important; }
+    .sidebar-menu .fa-github:before { content: "\f09b" !important; }
+    .sidebar-menu .fa-bars:before { content: "\f0c9" !important; }
+    .sidebar-menu .fa-search:before { content: "\f002" !important; }
+    
+    /* AI工具图标特殊处理 */
+    .sidebar-menu .fa-robot {
+        color: #555 !important;
+        opacity: 1 !important;
+        display: inline-block !important;
+        visibility: visible !important;
+    }
+    
+    .sidebar-menu .main-menu li.active > a, 
+    .sidebar-menu .main-menu li:hover > a {
+        color: #20a0ff !important;
+        background: #f8f9fa !important;
+        border-left: 3px solid #20a0ff !important;
+    }
+    
+    /* 确保点击时无黑块效果 */
+    .sidebar-menu .main-menu li.active > a,
+    .sidebar-menu .main-menu li:active > a {
+        background: #f8f9fa !important;
+        color: #20a0ff !important;
+    }
+    
+    .sidebar-menu .main-menu a i {
+        color: #495057 !important;
+    }
+    
+    .sidebar-menu .main-menu li.active > a i,
+    .sidebar-menu .main-menu li:hover > a i {
+        color: #20a0ff !important;
+    }
+    
+    /* 折叠状态图标颜色 */
+    .sidebar-menu.collapsed .main-menu a i,
+    body.sidebar-collapsed .sidebar-menu .main-menu a i {
+        color: #495057 !important;
+    }
+    
+    /* 统一菜单项样式 - 无缩进扁平化 */
+    .sidebar-menu .main-menu > li > a:hover {
+        background: #f8f9fa !important;
+        border-left: 3px solid #20a0ff !important;
+    }
+    
+    /* 图标完美对齐 */
+    .sidebar-menu .main-menu > li > a i {
+        margin-left: 0 !important;
+        margin-right: 10px !important;
+        width: 16px !important;
+        text-align: center !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .sidebar-menu .main-menu > li > a .title {
+        flex-grow: 1 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    /* 隐藏所有箭头图标 */
+    .sidebar-menu .main-menu .fa-angle-right,
+    .sidebar-menu .main-menu .fa-angle-down,
+    .sidebar-menu .main-menu .fa-angle-left,
+    .sidebar-menu .main-menu .fa-chevron-right,
+    .sidebar-menu .main-menu .fa-chevron-down,
+    .sidebar-menu .main-menu .fa-chevron-left {
+        display: none !important;
+    }
+    
+    /* 确保所有一级菜单全局对齐 */
+    .sidebar-menu .main-menu > li > a {
+        padding-left: 15px !important;
+        margin-left: 0 !important;
+        text-indent: 0 !important;
+    }
+    
+    /* 移除所有阴影效果 - 宝塔扁平风格 */
+    .sidebar-menu,
+    .sidebar-menu *,
+    .main-content,
+    .main-content * {
+        box-shadow: none !important;
+    }
+        
+    .main-menu {
+        flex: 1 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Logo放大和样式优化 */
+    .logo-expanded img {
+        width: 100% !important;
+        max-width: 180px !important;
+        height: auto !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .logo-expanded:hover img {
+        transform: scale(1.05) !important;
+    }
+        
+    /* 菜单区域滚动条美化 */
+    .main-menu::-webkit-scrollbar {
+        width: 4px !important;
+    }
+    
+    .main-menu::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+    
+    .main-menu::-webkit-scrollbar-thumb {
+        background: #f0f0f0 !important;
+        border-radius: 2px !important;
+    }
+    
+    .main-menu::-webkit-scrollbar-thumb:hover {
+        background: #e0e0e0 !important;
+    }
+    
+    /* 顶部导航栏样式 - 与Logo区域对齐 */
+    .navbar.user-info-navbar {
+        border-bottom: 1px solid #e5e5e5 !important;
+        background: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 20px !important;
+        height: 80px !important;
+        min-height: 80px !important;
+        line-height: 80px !important;
+        width: calc(100% - 220px) !important;
+        margin-left: 220px !important;
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
+        z-index: 999 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* 搜索框样式 - 导航栏中央 */
+    .navbar-search {
+        flex: 1 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 20px !important;
+        height: 80px !important;
+        line-height: 80px !important;
+    }
+    
+    .search-container {
+        position: relative !important;
+        width: 400px !important;
+        max-width: 400px !important;
+    }
+    
+    .search-input {
+        width: 100% !important;
+        height: 36px !important;
+        padding: 8px 40px 8px 16px !important;
+        border: 2px solid #e9ecef !important;
+        border-radius: 18px !important;
+        background: #ffffff !important;
+        font-size: 14px !important;
+        outline: none !important;
+        transition: all 0.3s ease !important;
+        box-sizing: border-box !important;
+    }
+    
+    .search-input:focus {
+        border-color: #f0ad4e !important;
+        box-shadow: 0 0 0 3px rgba(240, 173, 78, 0.2) !important;
+        animation: search-pulse 2s ease-in-out infinite !important;
+    }
+    
+    @keyframes search-pulse {
+        0% {
+            box-shadow: 0 0 0 3px rgba(240, 173, 78, 0.2);
+        }
+        50% {
+            box-shadow: 0 0 0 5px rgba(240, 173, 78, 0.3);
+        }
+        100% {
+            box-shadow: 0 0 0 3px rgba(240, 173, 78, 0.2);
+        }
+    }
+    
+    .search-icon {
+        position: absolute !important;
+        right: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        color: #999 !important;
+        font-size: 16px !important;
+        pointer-events: none !important;
+    }
+    
+    /* 导航栏内部元素垂直居中 */
+    .navbar-left,
+    .navbar-right,
+    .user-info-menu {
+        height: 80px !important;
+        line-height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    /* 实时日期显示样式 - 垂直居中 */
+    .navbar-date {
+        color: #6c757d !important;
+        font-size: 13px !important;
+        margin-right: 15px !important;
+        white-space: nowrap !important;
+        line-height: 80px !important;
+        height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    /* 左右菜单对齐 - 垂直居中 */
+    .user-info-menu.left-links {
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+        height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .user-info-menu.right-links {
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        height: 80px !important;
+    }
+    
+    .user-info-menu.right-links li {
+        margin-left: 10px !important;
+        height: 80px !important;
+        line-height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .user-info-menu.right-links li a {
+        color: #6c757d !important;
+        text-decoration: none !important;
+        font-size: 14px !important;
+        transition: color 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        height: 80px !important;
+    }
+    
+    .user-info-menu.right-links li a:hover {
+        color: #20a0ff !important;
+    }
+    
+    .user-info-menu.left-links li a {
+        color: #6c757d !important;
+        text-decoration: none !important;
+        font-size: 18px !important;
+        transition: color 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        height: 80px !important;
+    }
+    
+    .user-info-menu.left-links li a:hover {
+        color: #20a0ff !important;
+    }
+        
+    /* 文章显示区 */
+    .article-wrapper {
+        display: flex;
+        max-width: 1200px;
+        margin: 40px auto;
+        gap: 30px;
+        position: relative;
+    }
+    
+    .article-container {
+        flex: 0 0 75%;
+        background: #fff;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    
+    /* 悬浮目录样式 */
+    .article-toc {
+        flex: 0 0 20%;
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        background: #fff;
+        border-radius: 12px;
+        padding: 25px 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        border: 1px solid #e9ecef;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+    
+    .article-toc h4 {
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #1a73e8;
+        font-weight: 600;
+    }
+    
+    .article-toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .article-toc li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .article-toc a {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    }
+    
+    .article-toc a:hover {
+        color: #1a73e8;
+        background: #f8f9fa;
+        border-left-color: #1a73e8;
+        transform: translateX(2px);
+    }
+    
+    .article-toc a.active {
+        color: #1a73e8;
+        background: #e8f0fe;
+        border-left-color: #1a73e8;
+        font-weight: 500;
+    }
+    
+    /* 响应式处理 */
+    @media (max-width: 1024px) {
+        .article-wrapper {
+            flex-direction: column;
+        }
+        
+        .article-container {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .article-toc {
+            display: none;
+        }
+    }
+    
+    /* 平滑滚动 */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* 标题锚点偏移 */
+    h2[id] {
+        scroll-margin-top: 100px;
+    }
+    .article-title { 
+        font-size: 2.4rem; 
+        font-weight: bold; 
+        color: #333; 
+        margin-bottom: 15px; 
+        display: block;
+    }
+    .article-meta { 
+        color: #999; 
+        margin-bottom: 30px; 
+        border-bottom: 1px solid #eee; 
+        padding-bottom: 20px; 
+    }
+    .article-content { 
+        line-height: 2; 
+        color: #444; 
+        font-size: 1.1rem; 
+    }
+    .article-content h2 { 
+        color: #1a73e8; 
+        font-size: 1.6rem; 
+        margin-top: 35px; 
+        margin-bottom: 20px; 
+        border-left: 4px solid #1a73e8; 
+        padding-left: 15px; 
+        font-weight: bold;
+    }
+    .article-content h3 { 
+        color: #2c3e50; 
+        font-size: 1.3rem; 
+        margin-top: 25px; 
+        margin-bottom: 15px; 
+        font-weight: 600;
+    }
+    .article-content p { 
+        margin-bottom: 20px; 
+        text-align: justify;
+    }
+    .article-content ul { 
+        margin-bottom: 20px; 
+        padding-left: 25px; 
+    }
+    .article-content li { 
+        margin-bottom: 8px; 
+        line-height: 1.8;
+    }
+
+    /* 专家深度建议板块样式 */
+    .article-expert-advice {
+        background: #f9f9f9;
+        border-left: 5px solid #1a73e8;
+        padding: 25px;
+        margin-top: 40px;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .article-expert-advice h3 {
+        color: #1a73e8;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .article-expert-advice p {
+        margin-bottom: 12px;
+        line-height: 1.8;
+        color: #555;
+    }
+    .article-expert-advice strong {
+        color: #333;
+    }
+
+    /* 屏蔽首页干扰 */
+    .sites-section, .category-desc, .footer { display: none !important; } 
+    .back-btn { display: inline-block; margin-bottom: 25px; color: #1a73e8; font-weight: 500; text-decoration: none; }
+    </style>
+</head>
+<body class="page-body">
+    <div class="page-container">
+        <div class="sidebar-menu toggle-others fixed">
+            <div class="sidebar-menu-inner">
+                <header class="logo-env">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a href="./" class="logo-expanded">
+                            <img src="assets/images/logo@2x.png" width="100%" alt="优创资源导航" />
+                        </a>
+                        <a href="./" class="logo-collapsed">
+                            <img src="assets/images/logo-collapsed@2x.png" width="40" alt="优创资源导航" />
+                        </a>
+                    </div>
+                    <div class="mobile-menu-toggle visible-xs">
+                        <a href="#" data-toggle="user-info-menu">
+                            <i class="linecons-cog"></i>
+                        </a>
+                        <a href="#" data-toggle="mobile-menu">
+                            <i class="fa-bars"></i>
+                        </a>
+                    </div>
+                </header>
+                <ul id="main-menu" class="main-menu">
+                </ul>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <nav class="navbar user-info-navbar" role="navigation">
+                <!-- User Info, Notifications and Menu Bar -->
+                <!-- Left links for user info navbar -->
+                <ul class="user-info-menu left-links list-inline list-unstyled">
+                    <li class="hidden-sm hidden-xs">
+                        <a href="#" data-toggle="sidebar">
+                            <i class="fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- 中间搜索框 -->
+                <div class="navbar-search">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="search-input" placeholder="搜索工具...">
+                        <i class="fa fa-search search-icon"></i>
+                    </div>
+                </div>
+                
+                <ul class="user-info-menu right-links list-inline list-unstyled">
+                    <li class="hidden-sm hidden-xs">
+                        <span class="navbar-date" id="current-date"></span>
+                    </li>
+                    <li class="hidden-sm hidden-xs">
+                        <a href="https://github.com/Gary-96/zyku123-nav" target="_blank">
+                            <i class="fa-github"></i>  GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="article-wrapper">
+                <div class="article-container">
+                    <a href="index.html" class="back-btn">← 返回导航首页</a>
+                    <h1 id="p-title" class="article-title">加载中...</h1>
+                    <div id="p-date" class="article-meta"></div>
+                    <div id="p-content" class="article-content"></div>
+                </div>
+                
+                <div class="article-toc">
+                    <h4>📋 文章目录</h4>
+                    <ul id="toc-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/xenon-custom.js"></script>
+    <script src="assets/js/posts-db.js"></script>
+
+    <script>
+        function render() {
+            // 设置实时日期
+            const now = new Date();
+            document.getElementById('current-date').innerText = now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日";
+
+            // 渲染文章内容
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const post = postData[id] || postData['ai-trends'];
+            
+            document.getElementById('p-title').innerText = post.title;
+            document.getElementById('p-date').innerText = "📅 发布日期：" + post.date;
+            
+            // 渲染文章内容 + 专家深度建议
+            let contentWithAdvice = post.content;
+            
+            // 根据文章类型添加专家深度建议
+            const expertAdvice = getExpertAdvice(id);
+            if (expertAdvice) {
+                contentWithAdvice += `
+                    <div class="article-expert-advice">
+                        <h3>🎯 专家深度建议</h3>
+                        ${expertAdvice}
+                    </div>
+                `;
+            }
+            
+            document.getElementById('p-content').innerHTML = contentWithAdvice;
+            document.title = post.title + " - 优创资源导航";
+
+            // 生成文章目录
+            generateTOC();
+
+            // 搜索功能实现：按下回车跳转
+            document.getElementById('search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim() !== "") {
+                    window.location.href = 'index.html?s=' + encodeURIComponent(this.value);
+                }
+            });
+        }
+
+        // 生成文章目录
+        function generateTOC() {
+            const content = document.getElementById('p-content');
+            const headings = content.querySelectorAll('h2');
+            const tocList = document.getElementById('toc-list');
+            
+            // 清空现有目录
+            tocList.innerHTML = '';
+            
+            // 如果没有 h2 标题，隐藏目录
+            if (headings.length === 0) {
+                document.querySelector('.article-toc').style.display = 'none';
+                document.querySelector('.article-container').style.flex = '1';
+                return;
+            }
+            
+            // 为每个 h2 添加 ID（如果没有的话）
+            headings.forEach((heading, index) => {
+                if (!heading.id) {
+                    heading.id = `heading-${index}`;
+                }
+                
+                // 创建目录项
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${heading.id}`;
+                a.textContent = heading.textContent.replace(/^\d+\.\s*/, ''); // 移除开头的数字序号
+                a.className = 'toc-link';
+                
+                // 点击事件
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有活动状态
+                    document.querySelectorAll('.toc-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    // 添加当前活动状态
+                    this.classList.add('active');
+                    
+                    // 平滑滚动到目标位置
+                    const targetElement = document.getElementById(heading.id);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 100; // 考虑固定导航栏的高度
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+            
+            // 监听滚动，更新活动目录项
+            window.addEventListener('scroll', updateActiveTOC);
+        }
+
+        // 更新活动目录项
+        function updateActiveTOC() {
+            const headings = document.querySelectorAll('#p-content h2');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            let currentHeading = null;
+            
+            headings.forEach(heading => {
+                const rect = heading.getBoundingClientRect();
+                if (rect.top <= 150) { // 考虑导航栏高度
+                    currentHeading = heading;
+                }
+            });
+            
+            // 更新目录活动状态
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (currentHeading && link.getAttribute('href') === `#${currentHeading.id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // 获取专家深度建议
+        function getExpertAdvice(articleId) {
+            const adviceMap = {
+                'ai-trends': `
+                    <p><strong>提示词工程（Prompt Engineering）实战指南：</strong>在AI设计工具时代，<strong>精准的提示词</strong>是决定输出质量的关键。建议采用"角色+场景+要求+约束"的四段式结构。例如："作为资深UI设计师，为移动银行App设计登录界面，采用现代简约风格，符合WCAG 2.1无障碍标准，避免使用红色作为主色调。"</p>
+                    <p><strong>审美决策力的培养方法：</strong>AI可以生成100个设计方案，但<strong>审美判断仍需人类主导</strong>。建议建立个人设计评分卡，从用户体验、品牌一致性、技术可行性三个维度评估。每周花2小时分析优秀作品，训练自己的设计直觉。记住：AI是工具，不是设计师的替代品。</p>
+                    <p><strong>工作流程优化建议：</strong>将AI工具整合到现有工作流的<strong>概念探索阶段</strong>，而非最终交付。使用AI快速生成多种方向，然后人工精修细节。这样既能提高效率，又能保持设计品质的一致性。</p>
+                `,
+                'ui-trends': `
+                    <p><strong>仿生设计与性能平衡策略：</strong>仿生设计虽然视觉效果出色，但<strong>过度使用会影响加载性能</strong>。建议采用渐进增强策略：基础版本使用简洁动画，高端设备自动加载复杂动效。通过CSS媒体查询和JavaScript性能检测，实现<strong>智能降级</strong>。</p>
+                    <p><strong>微交互的最佳实践：</strong>物理触感设计要遵循<strong>反馈及时性原则</strong>。按钮反馈应在100ms内完成，避免用户等待焦虑。建议使用CSS transform替代position变化，利用GPU加速提升流畅度。同时，为移动设备考虑电池消耗，减少持续动画。</p>
+                    <p><strong>用户体验与视觉效果的平衡：</strong>在追求视觉冲击力的同时，<strong>功能性永远是第一位</strong>。建议进行A/B测试，量化设计改动对用户行为的影响。记住：最好的设计是用户感觉不到设计，但体验却很自然。</p>
+                `,
+                'dev-tools': `
+                    <p><strong>AI代码审查的重要性：</strong>AI代码审查不是要替代人工审查，而是<strong>提升审查效率</strong>。建议采用"AI初筛+人工复核"的双层机制。AI可以快速检查语法错误、性能问题、安全漏洞，人工则专注于业务逻辑和架构设计的合理性。</p>
+                    <p><strong>代码质量保障体系：</strong>建立<strong>自动化测试+AI审查+人工Code Review</strong>的三重保障。AI工具可以分析代码复杂度、检测潜在bug，但仍需要人工判断是否符合团队编码规范和业务需求。建议设置代码质量阈值，低于标准的代码自动触发重新审查。</p>
+                    <p><strong>团队协作最佳实践：</strong>AI工具应该<strong>赋能而非替代</strong>开发者。建议团队成员学习如何编写有效的AI提示词，将AI作为编程助手而非依赖。定期组织AI工具使用经验分享，提升整个团队的AI协作能力。</p>
+                `,
+                'payment-guide': `
+                    <p><strong>地区合规性细节指南：</strong>不同地区的支付法规差异巨大。<strong>欧盟地区</strong>需要严格遵守GDPR和PSD2法规，建议采用本地化支付网关；<strong>北美地区</strong>要注意各州不同的税务处理方式；<strong>亚太地区</strong>需要考虑外汇管制和本地支付习惯。</p>
+                    <p><strong>资金安全防护措施：</strong>建议采用<strong>多层级资金管理策略</strong>：日常运营资金放在Wise等灵活平台，大额资金放在受监管的银行账户。设置双重认证和交易限额，定期审查交易记录。对于跨境业务，建议购买专门的贸易保险。</p>
+                    <p><strong>汇率风险管理：</strong>汇率波动可能严重影响利润。建议使用<strong>汇率锁定工具</strong>，特别是对于大额交易。同时，建立汇率预警机制，当波动超过5%时自动通知。考虑在不同平台间分散资金，降低单一平台风险。</p>
+                `
+            };
+            
+            return adviceMap[articleId] || '';
+        }
+
+        window.onload = render;
+    </script>
+
+<script src="assets/menu.js"></script>
+<script>
+    // 确保在页面加载后渲染共享菜单
+    if (typeof renderCommonMenu === 'function') {
+        renderCommonMenu();
+    }
+    // 更新顶部导航栏日期
+    const dateEl = document.getElementById('current-date');
+    if(dateEl) {
+        const now = new Date();
+        dateEl.innerText = now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日";
+    }
+</script>
+
+</body>
+</html>
