@@ -710,6 +710,195 @@
         padding-left: 45px !important;
         margin-left: 0 !important;
     }
+    
+    /* 侧边栏收起时的样式修复 */
+    .sidebar-menu.collapsed {
+        width: 80px !important;
+    }
+    
+    .sidebar-menu.collapsed .logo-collapsed {
+        display: block !important;
+        text-align: center !important;
+        padding: 18px 0 !important;
+    }
+    
+    .sidebar-menu.collapsed .logo-collapsed img {
+        margin: 0 auto !important;
+        display: inline-block !important;
+        width: 32px !important;
+        height: 32px !important;
+        max-width: 32px !important;
+        max-height: 32px !important;
+    }
+    
+    .sidebar-menu.collapsed .logo-expanded {
+        display: none !important;
+    }
+    
+    /* 确保展开状态 Logo 正常显示 */
+    .sidebar-menu:not(.collapsed) .logo-expanded img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+    
+    .sidebar-menu:not(.collapsed) .logo-collapsed {
+        display: none !important;
+    }
+    
+    /* 全局内容自适应 - 收起时所有内容跟随侧边栏 */
+    .sidebar-menu.collapsed + .main-content,
+    .page-container .sidebar-menu.collapsed + .main-content {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 顶部导航栏自适应 */
+    .sidebar-menu.collapsed ~ .main-content .user-info-navbar,
+    .sidebar-menu.collapsed + .main-content .user-info-navbar,
+    .page-container .sidebar-menu.collapsed + .main-content .user-info-navbar,
+    .page-container .sidebar-menu.collapsed ~ .main-content .user-info-navbar {
+        left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 卡片区域自适应 */
+    .sidebar-menu.collapsed ~ .main-content .sites-section,
+    .sidebar-menu.collapsed + .main-content .sites-section,
+    .page-container .sidebar-menu.collapsed + .main-content .sites-section,
+    .page-container .sidebar-menu.collapsed ~ .main-content .sites-section {
+        max-width: calc(100vw - 120px) !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 底部导航自适应 */
+    .sidebar-menu.collapsed ~ .main-content footer,
+    .sidebar-menu.collapsed + .main-content footer,
+    .page-container .sidebar-menu.collapsed + .main-content footer,
+    .page-container .sidebar-menu.collapsed ~ .main-content footer {
+        left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 通用内容区域自适应 - 覆盖所有可能的内容 */
+    .sidebar-menu.collapsed ~ * .main-content,
+    .sidebar-menu.collapsed + * .main-content,
+    .page-container .sidebar-menu.collapsed ~ * .main-content,
+    .page-container .sidebar-menu.collapsed + * .main-content {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 确保所有直接子元素都跟随 */
+    .page-container .sidebar-menu.collapsed ~ * {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* CSS 边距联动修复 */
+    .main-content {
+        margin-left: 220px;
+        transition: all 0.3s ease;
+    }
+    
+    /* 当侧边栏处于折叠状态时，强制修改主内容区的左边距 */
+    .sidebar-menu.collapsed + .main-content,
+    body.sidebar-collapsed .main-content,
+    .page-container .sidebar-menu.collapsed + .main-content {
+        margin-left: 80px !important;
+        transition: margin-left 0.3s ease;
+    }
+    
+    /* 同时也需要调整顶部导航栏的宽度和位置 */
+    body.sidebar-collapsed .navbar.navbar-fixed-top,
+    .sidebar-menu.collapsed ~ .main-content .navbar.navbar-fixed-top,
+    .page-container .sidebar-menu.collapsed ~ .main-content .navbar.navbar-fixed-top {
+        left: 80px !important;
+        width: calc(100% - 80px) !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 强制所有内容跟随侧边栏 - 全局覆盖 */
+    .sidebar-menu.collapsed ~ * {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    .sidebar-menu.collapsed ~ .main-content * {
+        margin-left: 0 !important;
+    }
+    
+    /* 确保所有直接子元素都跟随 */
+    .page-container .sidebar-menu.collapsed ~ * {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    .page-container .sidebar-menu.collapsed ~ .main-content {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    .page-container .sidebar-menu.collapsed ~ .main-content * {
+        margin-left: 0 !important;
+    }
+    
+    /* 顶部导航栏全局跟随 */
+    .sidebar-menu.collapsed ~ .main-content .user-info-navbar,
+    .sidebar-menu.collapsed ~ .main-content nav,
+    .sidebar-menu.collapsed ~ .main-content .navbar {
+        left: 80px !important;
+        width: calc(100% - 80px) !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 中间内容区域跟随 */
+    .sidebar-menu.collapsed ~ .main-content .sites-section,
+    .sidebar-menu.collapsed ~ .main-content .content-area,
+    .sidebar-menu.collapsed ~ .main-content .main-content-inner {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 底部导航跟随 */
+    .sidebar-menu.collapsed ~ .main-content footer,
+    .sidebar-menu.collapsed ~ .main-content .footer,
+    .sidebar-menu.collapsed ~ .main-content .main-footer {
+        left: 80px !important;
+        width: calc(100% - 80px) !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* Logo 尺寸微调 - 折叠状态限制在 40px */
+    .sidebar-menu.collapsed .logo-collapsed img {
+        width: 40px !important;
+        height: 40px !important;
+        max-width: 40px !important;
+        max-height: 40px !important;
+    }
+    
+    .sidebar-menu.collapsed + .main-content,
+    .page-container .sidebar-menu.collapsed + .main-content {
+        margin-left: 80px !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* 手机端强制重置 */
+    @media (max-width: 768px) {
+        .main-content {
+            margin-left: 0 !important;
+        }
+        
+        .sidebar-menu.collapsed + .main-content,
+        .page-container .sidebar-menu.collapsed + .main-content {
+            margin-left: 0 !important;
+        }
+        
+        .page-container .sidebar-menu.collapsed ~ * {
+            margin-left: 0 !important;
+        }
+    }
 </style>
 </head>
 
@@ -725,7 +914,7 @@
                             <img src="../assets/images/logo@2x.png" width="100%" alt="优创资源导航" />
                         </a>
                         <a href="./" class="logo-collapsed">
-                            <img src="../assets/images/logo-collapsed@2x.png" width="40" alt="优创资源导航" />
+                            <img src="../assets/images/favicon.png" width="40" height="40" alt="优创资源导航" />
                         </a>
                     </div>
                     <div class="mobile-menu-toggle visible-xs">
